@@ -13,6 +13,32 @@ add_custom_command (OUTPUT et_lex.lex.c
 # 		COMMAND yacc ${CMAKE_CURRENT_SOURCE_DIR}/parse.y
 # 		COMMAND lex  ${CMAKE_CURRENT_SOURCE_DIR}/lex.l)
 
-add_library (com_err com_err.c error_message.c et_name.c init_et.c)
+# Compile the files only once
+add_library(_libcomerr OBJECT com_err.c error_message.c et_name.c init_et.c)
+
+add_library(com_err_shared SHARED $<TARGET_OBJECTS:_libcomerr>)
+set_target_properties(com_err_shared PROPERTIES
+    OUTPUT_NAME com_err
+)
+add_library(com_err_static STATIC $<TARGET_OBJECTS:_libcomerr>)
+set_target_properties(com_err_static PROPERTIES
+    OUTPUT_NAME com_err
+)
 
 include_directories (${CMAKE_CURRENT_SOURCE_DIR})
+
+install(
+    TARGETS compile_et
+    DESTINATION ${CMAKE_INSTALL_SBINDIR}
+)
+
+install(
+    TARGETS com_err_shared
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(
+    TARGETS com_err_static
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+

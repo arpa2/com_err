@@ -1,1 +1,0 @@
-for f in com_err.3 com_err.h com_err.c com_right.h compile_et.1 compile_et.h compile_et.c error.c lex.h lex.l parse.y roken_rename.h version-script.map ; do wget https://raw.githubusercontent.com/freebsd/freebsd/master/contrib/com_err/$f ; done
