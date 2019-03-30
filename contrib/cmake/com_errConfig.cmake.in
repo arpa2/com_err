@@ -1,0 +1,23 @@
+# - Config file for the com_err package
+# It defines the following variables
+#  com_err_INCLUDE_DIRS    - include directories for com_err
+#  com_err_LIBRARIES       - libraries to link against (e.g. -lcom_err)
+#  com_err_SRC             - sources to add for com_err
+ 
+# Compute paths
+get_filename_component(com_err_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+set(com_err_LIB_DIRS "@CONF_LIB_DIRS@")
+set(com_err_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+get_filename_component(
+    com_err_LIBRARIES
+    "${com_err_LIB_DIRS}/libcom_err${CMAKE_IMPORT_LIBRARY_SUFFIX}"
+    ABSOLUTE
+)
+
+get_filename_component(
+    com_err_STATIC_LIBRARIES
+    "${com_err_LIB_DIRS}/libcom_err${CMAKE_STATIC_LIBRARY_SUFFIX}"
+    ABSOLUTE
+)

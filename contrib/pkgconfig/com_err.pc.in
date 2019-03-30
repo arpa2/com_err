@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: com_err
+Description: Common Error Description Library for UNIX
+Version: @com_err_VERSION@
+URL: https://github.com/arpa2/com_err
+Cflags: -I${includedir}
+Libs: -L${libdir} -lcom_err
