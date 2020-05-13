@@ -116,10 +116,7 @@ static char *ds(const char *string)
 	return(rv);
 }
 
-// The table number is designed for a 32-bit number but the
-// long type is no longer the best representation, we have
-// advanced since 1989 and now use independent notation.
-int32_t table_number;
+long table_number;
 int current = 0;
 char **error_codes = NULL;
 
@@ -164,8 +161,8 @@ static void put_ecs(void)
 	int i;
 	for (i = 0; i < current; i++) {
 	     if (error_codes[i] != NULL)
-		  fprintf(hfile, "#define %-40s ((int32_t) %ld)\n",
-			  error_codes[i], (long) table_number + i);
+		  fprintf(hfile, "#define %-40s ((int32_t) %ldL)\n",
+			  error_codes[i], table_number + i);
 	}
 }
 

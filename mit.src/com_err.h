@@ -11,7 +11,6 @@
 #ifndef COM_ERR__H
 #define COM_ERR__H
 
-#include <stdint.h>
 #include <stdarg.h>
 
 typedef void (*com_err_handler_t)(const char *, long, const char *, va_list);
